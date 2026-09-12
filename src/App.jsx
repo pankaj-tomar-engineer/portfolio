@@ -260,7 +260,7 @@ export default function App() {
                   variant="outlined"
                   size="large"
                   component="a"
-                  href="./public/Pankaj_MERN_6+yr_Lead.pdf"
+                  href="./Pankaj_MERN_6+yr_Lead.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                   endIcon={<DownloadIcon />}
@@ -310,7 +310,7 @@ export default function App() {
               >
                 <Box
                   component="img"
-                  src={"./public/pankajPhoto.png"}
+                  src={"./pankajPhoto.png"}
                   alt="Pankaj Tomar"
                   sx={{
                     width: "100%",
