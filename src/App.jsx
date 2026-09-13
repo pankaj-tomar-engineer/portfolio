@@ -17,6 +17,7 @@ import {
   Toolbar,
   Typography,
 } from "@mui/material";
+import AppHeader from "./components/NavBar";
 import MenuIcon from "@mui/icons-material/Menu";
 import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
 import DownloadIcon from "@mui/icons-material/Download";
@@ -31,59 +32,9 @@ import { motion } from "framer-motion";
 import ContentCopyOutlinedIcon from "@mui/icons-material/ContentCopyOutlined";
 import CheckOutlinedIcon from "@mui/icons-material/CheckOutlined";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
-
-const nav = ["About", "Skills", "Experience", "Projects", "Contact"];
-const skills = [
-  "React Native",
-  "React.js",
-  "JavaScript",
-  "TypeScript",
-  "Node.js",
-  "Java",
-  "REST APIs",
-  "Firebase",
-  "Git",
-  "Docker",
-  "Redux",
-  "Material UI",
-];
-const experience = [
-  [
-    "2022 — Present",
-    "Technical Team Lead / Senior React Native Developer",
-    "Leading mobile development, architecture and delivery for production applications across React Native, APIs, authentication, fintech integrations and scalable architecture.",
-  ],
-  [
-    "2020 — 2022",
-    "React Native Developer",
-    "Built and maintained cross-platform mobile applications with reusable components, API integrations, state management and production release workflows.",
-  ],
-  [
-    "Earlier",
-    "Software Developer",
-    "Worked across web and backend development while strengthening JavaScript, React, Node.js, databases and software engineering fundamentals.",
-  ],
-];
-const projects = [
-  [
-    "01",
-    "Fintech Mobile Platform",
-    "A secure cross-platform financial application focused on authentication, API integrations, transaction flows and a polished mobile experience.",
-    ["React Native", "Node.js", "REST API"],
-  ],
-  [
-    "02",
-    "Business Operations App",
-    "A production mobile solution for business workflows with reusable UI, role-based experiences, notifications and backend integrations.",
-    ["React Native", "TypeScript", "Firebase"],
-  ],
-  [
-    "03",
-    "Developer Portfolio",
-    "A fast, responsive personal portfolio built with React, Vite and Material UI with a strong editorial visual identity.",
-    ["React", "Vite", "MUI"],
-  ],
-];
+import { experience, navItem, projects, skills } from "./data/rest";
+import Experience from "./components/Experience";
+import Section from "./components/Section";
 
 function Label({ children }) {
   return (
@@ -99,13 +50,6 @@ function Label({ children }) {
     >
       {children}
     </Typography>
-  );
-}
-function Section({ id, children, sx = {} }) {
-  return (
-    <Box id={id} component="section" sx={{ py: { xs: 8, md: 12 }, ...sx }}>
-      {children}
-    </Box>
   );
 }
 
@@ -130,61 +74,12 @@ export default function App() {
   };
   return (
     <Box>
-      <AppBar
-        position="fixed"
-        elevation={0}
-        sx={{
-          bgcolor: "rgba(247,247,245,.88)",
-          color: "text.primary",
-          backdropFilter: "blur(14px)",
-          borderBottom: "1px solid #e7e7e3",
-        }}
-      >
-        <Container maxWidth="lg">
-          <Toolbar disableGutters sx={{ minHeight: 72 }}>
-            <Typography
-              component="a"
-              href="#top"
-              sx={{
-                fontWeight: 800,
-                fontSize: 18,
-                letterSpacing: "-.03em",
-                mr: "auto",
-              }}
-            >
-              PT<span style={{ color: "#5B3DF5" }}>.</span>
-            </Typography>
-            <Stack
-              direction="row"
-              spacing={1}
-              sx={{ display: { xs: "none", md: "flex" } }}
-            >
-              {nav.map((x) => (
-                <Button key={x} color="inherit" onClick={() => go(x)}>
-                  {x}
-                </Button>
-              ))}
-            </Stack>
-            <Button
-              variant="contained"
-              onClick={() => go("Contact")}
-              sx={{ ml: 2, display: { xs: "none", sm: "inline-flex" } }}
-            >
-              Let's talk <ArrowOutwardIcon sx={{ fontSize: 17, ml: 0.5 }} />
-            </Button>
-            <IconButton
-              onClick={() => setOpen(true)}
-              sx={{ display: { xs: "inline-flex", md: "none" }, ml: 1 }}
-            >
-              <MenuIcon />
-            </IconButton>
-          </Toolbar>
-        </Container>
-      </AppBar>
+      <AppHeader />
+
       <Drawer anchor="right" open={open} onClose={() => setOpen(false)}>
         <Box sx={{ width: 280, pt: 8 }}>
           <List>
-            {nav.map((x) => (
+            {navItem.map((x) => (
               <ListItem key={x} disablePadding>
                 <ListItemButton onClick={() => go(x)}>
                   <ListItemText primary={x} />
@@ -343,9 +238,12 @@ export default function App() {
         </Container>
       </Box>
 
+      <Typography sx={{ textAlign: "center" }} variant="h4" gutterBottom>
+        About
+      </Typography>
+
       <Section id="about" sx={{ bgcolor: "#151A2D", color: "white" }}>
         <Container maxWidth="lg">
-          <Label>About</Label>
           <Box
             sx={{
               display: "grid",
@@ -404,7 +302,6 @@ export default function App() {
 
       <Section id="skills">
         <Container maxWidth="lg">
-          <Label>Skills</Label>
           <Typography
             variant="h2"
             sx={{
@@ -413,7 +310,7 @@ export default function App() {
               mb: 6,
             }}
           >
-            Tools I work with.
+            Skills I work with.
           </Typography>
           <Stack direction="row" flexWrap="wrap" useFlexGap gap={1.2}>
             {skills.map((s, i) => (
@@ -435,58 +332,7 @@ export default function App() {
         </Container>
       </Section>
 
-      <Section id="experience" sx={{ bgcolor: "#ECECE8" }}>
-        <Container maxWidth="lg">
-          <Label>Experience</Label>
-          <Typography
-            variant="h2"
-            sx={{
-              fontSize: { xs: 42, md: 62 },
-              letterSpacing: "-.05em",
-              mb: 7,
-            }}
-          >
-            Experience that ships.
-          </Typography>
-          <Stack divider={<Divider />}>
-            {experience.map(([period, role, text]) => (
-              <Box
-                key={period}
-                sx={{
-                  py: 4,
-                  display: "grid",
-                  gridTemplateColumns: { xs: "1fr", md: "180px 1fr" },
-                  gap: 3,
-                }}
-              >
-                <Typography
-                  sx={{
-                    fontFamily: '"DM Mono",monospace',
-                    color: "primary.main",
-                    fontSize: 13,
-                  }}
-                >
-                  {period}
-                </Typography>
-                <Box>
-                  <Typography
-                    variant="h4"
-                    sx={{ fontSize: { xs: 24, md: 30 }, mb: 0.7 }}
-                  >
-                    {role}
-                  </Typography>
-                  <Typography
-                    color="text.secondary"
-                    sx={{ lineHeight: 1.8, maxWidth: 800 }}
-                  >
-                    {text}
-                  </Typography>
-                </Box>
-              </Box>
-            ))}
-          </Stack>
-        </Container>
-      </Section>
+      <Experience />
 
       <Section id="projects">
         <Container maxWidth="lg">
