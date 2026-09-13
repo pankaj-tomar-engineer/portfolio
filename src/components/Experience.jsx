@@ -1,25 +1,8 @@
 import { experience } from "../data/rest";
-import { useState } from "react";
-import {
-  AppBar,
-  Box,
-  Button,
-  Chip,
-  Container,
-  Divider,
-  Drawer,
-  IconButton,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemText,
-  Paper,
-  Stack,
-  Toolbar,
-  Typography,
-} from "@mui/material";
 
-import Section from "./Section";
+import { Box, Container, Divider, Stack, Typography } from "@mui/material";
+
+import { Section } from "./Section";
 
 export default function Experience() {
   return (

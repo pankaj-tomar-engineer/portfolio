@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { navItem } from "../data/rest";
 import MenuIcon from "@mui/icons-material/Menu";
 import {
@@ -14,9 +14,7 @@ import {
 import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
 
 export default function AppHeader() {
-  const [open, setOpen] = useState(false);
   const go = (id) => {
-    setOpen(false);
     document
       .getElementById(id.toLowerCase())
       ?.scrollIntoView({ behavior: "smooth" });
@@ -66,7 +64,6 @@ export default function AppHeader() {
             Let's talk <ArrowOutwardIcon sx={{ fontSize: 17, ml: 0.5 }} />
           </Button>
           <IconButton
-            onClick={() => setOpen(true)}
             sx={{ display: { xs: "inline-flex", md: "none" }, ml: 1 }}
           >
             <MenuIcon />
