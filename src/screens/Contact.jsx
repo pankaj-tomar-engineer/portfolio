@@ -11,12 +11,15 @@ import {
 import ContentCopyOutlinedIcon from "@mui/icons-material/ContentCopyOutlined";
 import CheckOutlinedIcon from "@mui/icons-material/CheckOutlined";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
-import { Label, Section } from "./Section";
+
+import { Section } from "../components/Section";
 
 export default function Contact() {
   const [copied, setCopied] = useState(false);
+
   const copyEmail = async () => {
     await navigator.clipboard.writeText("pankaj.tomar.engineer@gmail.com");
+
     setCopied(true);
 
     setTimeout(() => {
@@ -25,9 +28,23 @@ export default function Contact() {
   };
 
   return (
-    <Section id="contact" sx={{ bgcolor: "#5B3DF5", color: "white" }}>
+    <Section
+      id="contact"
+      sx={{
+        mt: 10,
+        color: "#172626",
+
+        bgcolor: "rgba(255, 255, 255, 0.65)",
+
+        borderTop: "1px solid #DCEEEE",
+        borderBottom: "1px solid #DCEEEE",
+
+        background:
+          "radial-gradient(circle at 50% 0%, rgba(179,236,236,.65), transparent 45%), rgba(255,255,255,.65)",
+      }}
+    >
       <Container maxWidth="lg">
-        <Label>Contact</Label>
+        {/* ================= HEADING ================= */}
         <Typography
           variant="h2"
           sx={{
@@ -36,26 +53,40 @@ export default function Contact() {
             lineHeight: 0.95,
             letterSpacing: "-.06em",
             mb: 4,
+            color: "#172626",
+            fontWeight: 700,
           }}
         >
           Have a project in mind?
           <br />
-          Let’s build it.
+          <Box
+            component="span"
+            sx={{
+              color: "#3BD6C6",
+            }}
+          >
+            Let’s build it.
+          </Box>
         </Typography>
+
+        {/* ================= DESCRIPTION ================= */}
         <Typography
           sx={{
+            color: "#607070",
             textAlign: "center",
             fontSize: 18,
             lineHeight: 1.7,
-            color: "rgba(255,255,255,.78)",
             mb: 4,
           }}
         >
           I’m open to interesting product, mobile and full-stack engineering
           opportunities.
         </Typography>
+
+        {/* ================= CONTACT ACTIONS ================= */}
         <Box
           sx={{
+            color: "#172626",
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
@@ -63,7 +94,7 @@ export default function Contact() {
             gap: 2.5,
           }}
         >
-          {/* Copy Email */}
+          {/* ================= COPY EMAIL ================= */}
           <Button
             component="button"
             variant="contained"
@@ -74,46 +105,51 @@ export default function Contact() {
             sx={{
               minHeight: 52,
               px: 3,
+
               borderRadius: "14px",
-              bgcolor: "white",
-              color: "#151A2D",
+
+              bgcolor: "#40E0D0",
+              color: "#172626",
+
               fontSize: { xs: 14, sm: 16 },
               fontWeight: 600,
               textTransform: "none",
-              boxShadow: "0 8px 25px rgba(0,0,0,0.15)",
+
+              boxShadow: "0 8px 25px rgba(64, 224, 208, 0.18)",
+
               transition: "all .25s ease",
 
               "&:hover": {
-                bgcolor: "#f5f5f5",
+                bgcolor: "#3BD6C6",
                 transform: "translateY(-2px)",
-                boxShadow: "0 12px 30px rgba(0,0,0,0.2)",
+                boxShadow: "0 12px 30px rgba(64, 224, 208, 0.25)",
               },
             }}
           >
             {copied ? "Email Copied!" : "pankaj.tomar.engineer@gmail.com"}
           </Button>
 
-          {/* OR divider */}
+          {/* ================= OR DIVIDER ================= */}
           <Box
             sx={{
               display: "flex",
               alignItems: "center",
               width: { xs: "80%", sm: 320 },
               gap: 2,
-              color: "rgba(255,255,255,.5)",
             }}
           >
             <Divider
               sx={{
                 flex: 1,
-                borderColor: "rgba(255,255,255,.2)",
+                borderColor: "#DCEEEE",
               }}
             />
 
             <Typography
               sx={{
+                color: "#607070",
                 fontSize: 14,
-                fontWeight: 500,
+                fontWeight: 600,
                 letterSpacing: 1,
               }}
             >
@@ -123,12 +159,12 @@ export default function Contact() {
             <Divider
               sx={{
                 flex: 1,
-                borderColor: "rgba(255,255,255,.2)",
+                borderColor: "#DCEEEE",
               }}
             />
           </Box>
 
-          {/* WhatsApp */}
+          {/* ================= WHATSAPP ================= */}
           <IconButton
             component="a"
             href="https://wa.me/917217476782"
@@ -138,16 +174,20 @@ export default function Contact() {
             sx={{
               width: 54,
               height: 54,
-              color: "white",
-              border: "1px solid rgba(255,255,255,.25)",
+
+              color: "#172626",
+
+              border: "1px solid #B3ECEC",
               borderRadius: "50%",
-              background: "rgba(255,255,255,.08)",
+
+              background: "#F0FAFA",
+
               transition: "all .25s ease",
 
               "&:hover": {
-                background: "rgba(255,255,255,.16)",
+                background: "#40E0D0",
                 transform: "translateY(-3px) scale(1.05)",
-                borderColor: "rgba(255,255,255,.5)",
+                borderColor: "#40E0D0",
               },
 
               "& svg": {
@@ -158,10 +198,11 @@ export default function Contact() {
             <WhatsAppIcon />
           </IconButton>
 
+          {/* ================= WHATSAPP LABEL ================= */}
           <Typography
             sx={{
+              color: "#607070",
               fontSize: 13,
-              color: "rgba(255,255,255,.55)",
               mt: -1,
             }}
           >

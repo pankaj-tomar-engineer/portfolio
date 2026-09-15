@@ -1,6 +1,6 @@
 import { Chip, Container, Stack, Typography } from "@mui/material";
 import { motion } from "framer-motion";
-import { Section } from "./Section";
+import { Section } from "../components/Section";
 import { skills } from "../data/rest";
 
 export default function Skills() {
